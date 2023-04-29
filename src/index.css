@@ -1,0 +1,146 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&display=swap');
+
+body {
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+  font-family: 'Open Sans', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.app{
+  background-color: #ffe383;
+  display: flex;
+  color: gray;
+}
+
+.side-bar{
+  background-color: #752092;
+  height: 100vh;
+  color: white;
+  width: 400px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.side-bar button{
+  color: #fff;
+}
+
+
+.main{
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  text-align: center;
+}
+
+button{
+  border: solid 0.5px rgba(255,255,255,0.5);
+  background-color: transparent;
+  cursor: pointer;
+  border-radius: 5px;
+  margin: 10px;
+  padding: 10px;
+}
+
+nav{
+  border-top: solid 0.5px rgba(255,255,255,0.5);
+  margin: 10px;
+  padding: 10px;
+}
+
+.history{
+  margin: 10px;
+  padding: 10px;
+  height: 100%;
+}
+
+.history li{
+  list-style: none;
+  padding: 15px 0;
+  cursor: pointer;
+}
+
+.info{
+  /* color: rgba(255,255,255); */
+  color: gray;
+  font-size: 11px;
+  padding: 10px;
+}
+.bottom-section{
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.input-container{
+  position: relative;
+  width: 100%;
+  max-width: 650px;
+}
+
+input{
+  width: 100%;
+  font-size: 20px;
+  border: none;
+  background-color: rgba(255,255,255,0.04);
+  padding: 12px 15px;
+  background-color: rgba(117, 32, 146, 0.03);
+  border-radius: 5px;
+  box-shadow: rgba(0,0,0,0.05) 0 50px 55px,
+    rgba(0,0,0,0.05) 0 -12px 30px,
+    rgba(0,0,0,0.05) 0 4px 6px,
+    rgba(0,0,0,0.05) 0 5px 3px,
+    rgba(0,0,0,0.05) 0 -3px 5px;
+}
+
+input:focus{
+  outline: none;
+}
+
+#submit{
+  position: absolute;
+  right: 0;
+  font-size: 40px;
+  bottom: 0px;
+  cursor: pointer;
+}
+
+.feed{
+  overflow-y: scroll;
+  overflow-x: hidden;
+  width: 100%;
+  padding: 0;
+
+}
+
+.feed li{
+  display: flex;
+  width: 80vw;
+  font-size: 20px;
+  color: white;
+  background-color: #ff9f31;
+  border-radius: 20px;
+  padding: 20px;
+  margin: 20px;
+}
+
+.feed p{
+  /* color: grey; */
+  font-size: 14px;
+  text-align: left;
+}
+
+.feed p.role{
+  min-width: 100px;
+  text-transform: uppercase;
+  font-weight: 800;
+}

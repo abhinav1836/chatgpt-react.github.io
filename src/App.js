@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import spinner from './Spinner.svg';
 
 const App = () => {
   const [value, setValue] =useState(null);
@@ -17,31 +18,42 @@ const App = () => {
     setMessage(null);
     setValue("");
   }
-  const getMessages = async () =>{
+  const [loading, setLoading] = useState(false);
+  
+  const getMessages = async () => {
     const options = {
-      method:'POST',
-      body : JSON.stringify({
-              message: value
-            }),
+      method: "POST",
+      body: JSON.stringify({
+        message: value,
+      }),
       headers: {
-              'Content-Type': 'application/json'
-      }
-    }
-    try{
-        const response = await fetch('http://localhost:8000/completions', options);
+        "Content-Type": "application/json",
+      },
+    };
+    try {
+      const response = await fetch("http://localhost:8000/completions", options);
+      const data = await response.json();
+      console.log(data);
+      setLoading(true);
 
-        const data = await response.json(); 
+      // Simulating API request delay
+      setTimeout(() => {
+        // Perform API request
+        // Once the request is completed, set loading to false
+        setLoading(false);
+      }, 2000);     
 
-        console.log(data);
-        
+      if (data.choices && data.choices.length > 0) {  //*CHECKING IF DATA>CHOICES != 'NULL'
         setMessage(data.choices[0].message);
-
+      } else {
+        setMessage(null);
+      }
     } catch (error) {
-        console.error(error);
+      console.error(error);
     }
-  }
+  };
+  
 
-  // console.log(message)
   useEffect(() =>{
     console.log(currentTitle, value, message);
     if(!currentTitle && value && message){     // * setting backup of previous chats
@@ -62,7 +74,7 @@ const App = () => {
       ]
       ))
     }
-  },[message, currentTitle])
+  },[currentTitle,message, currentTitle])
 
   const currentChat = previousChat.filter(previousChat => previousChat.title === currentTitle);
   const uniqueTitle = Array.from(new Set(previousChat.map(previousChat => previousChat.title)));
@@ -88,8 +100,15 @@ const App = () => {
         </ul>
         <div className="bottom-section">
           <div className="input-container">
-            <input placeholder="Send a message." value={value} onChange={(e) => setValue(e.target.value)}/>
-            <div id="submit" onClick={getMessages}>➢</div>
+            <input id="chat-input" placeholder="Send a message." value={value || ''} onChange={(e) => setValue(e.target.value)}/>
+            {/* <div id="submit" onClick={getMessages}>➢</div> */}
+            <div id="submit" onClick={getMessages}>
+              {loading ? (
+                <img src={spinner} alt="Loading spinner" />
+              ) : (
+                '➢'
+              )}
+            </div>
           </div>
           <p className="info">
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae inventore soluta dicta?
